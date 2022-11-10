@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnGenerar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToGenerateQR"
+        android:text="@string/generar_qr"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnLeer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToReadQR"
+        android:text="@string/leer_qr" />
+
+    <Button
+        android:id="@+id/btnGenerarForApi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToGenerateQRForApi"
+        android:text="@string/generar_qr_api"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

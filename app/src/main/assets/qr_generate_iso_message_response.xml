@@ -1,0 +1,21 @@
+<isomsg direction="outgoing" >
+    <header>0000000000</header>
+    <field id="0" value="0210"/>
+    <field id="3" value="540061"/>
+    <field id="4" value="000000068000"/>
+    <field id="7" value="1106173819"/>
+    <field id="11" value="000104"/>
+    <field id="12" value="173819"/>
+    <field id="13" value="1106"/>
+    <field id="22" value="030"/>
+    <field id="24" value="023"/>
+    <field id="37" value="031100075402"/>
+    <field id="38" value="456789"/>
+    <field id="39" value="00"/>
+    <field id="41" value="46050312"/>
+    <field id="42" value="000000000100001"/>
+    <field id="61" value=""/>
+    <field id="105" value="2022308600000008"/>
+    <field id="106" value="00020101021202280012py.com.bepsa010811223344520454115303600541300000001000005802PY5908SUPERMAS6008ASUNCION6116202230860000000862870325SUCURSAL12345            0525000008                   0725TERMINAL12345            63102781069685"/>
+    <field id="107" value="20"/>
+</isomsg>
