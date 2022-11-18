@@ -70,7 +70,7 @@ public class ReadQRActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         String datos = result.getContents();
-        String dataDefault = "00020101021202270012py.com.bepsa01070100001520470115303600541300000000035005802PY5921COMERCIO PRUEBA BEPSA6008ASUNCI�N61162022314500000028624503020105060001040725                         63102883969448";
+        String dataDefault = "00020101021202270012py.com.bepsa01070100001520470115303600541300000000015005802PY5921COMERCIO PRUEBA BEPSA6008ASUNCI�N61162022314500000031624503020105060001040725                         63102074716646";
         if (!Objects.isNull(datos) && !datos.trim().isEmpty()) {
             try {
                 JSONObject request = translateToSsRestRequest(decodeQRData(datos));
@@ -85,19 +85,19 @@ public class ReadQRActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        try {
-            JSONObject request = translateToSsRestRequest(decodeQRData(dataDefault));
-            postTypeAsyncApi(request);
-            ISOUtil.sleep(10000);
-            jsonObject = new JSONObject("{\"status\": \"success\",\"response_status_code\": 200,\"response_code\": \"00\",\"transaction_status\": \"APPROVED\",\"ticket_number\": \"0000000001\",\"retrieval_reference_number\": \"031100075402\",\"transaction_token\" : \"2022312300000009\",\"amount\": 10000,\"installment_number\": 1,\"currency\": 600,\"payer_data\": {\"account_number\": \"0123465789\",\"account_type\" : \"D\",\"document_number\" : \"0123456\",\"payer_cellphone\" : \"0971234567\",\"payer_email\": \"juanperez@entidad.com.py\",\"payer_name\" : \"Juan\",\"payer_lastname\": \"Perez\"},\"entity_data\" : {\"entity_transaction_id\": \"1020\",\"entity_description\" : \"Banco Continental\"},\"card_data\": {\"card_number\" : \"542434******1020\"} }");
-            if ("00".equals(jsonObject.getString("response_code")) && "APPROVED".equalsIgnoreCase(jsonObject.getString("transaction_status"))) {
-                imagen.setVisibility(View.VISIBLE);
-                labelResultado.setVisibility(View.VISIBLE);
-                jsonObject = null;
-            }
-        } catch (JSONException je) {
-            je.printStackTrace();
-        }
+//        try {
+//            JSONObject request = translateToSsRestRequest(decodeQRData(dataDefault));
+//            postTypeAsyncApi(request);
+//            ISOUtil.sleep(10000);
+//            jsonObject = new JSONObject("{\"status\": \"success\",\"response_status_code\": 200,\"response_code\": \"00\",\"transaction_status\": \"APPROVED\",\"ticket_number\": \"0000000001\",\"retrieval_reference_number\": \"031100075402\",\"transaction_token\" : \"2022312300000009\",\"amount\": 10000,\"installment_number\": 1,\"currency\": 600,\"payer_data\": {\"account_number\": \"0123465789\",\"account_type\" : \"D\",\"document_number\" : \"0123456\",\"payer_cellphone\" : \"0971234567\",\"payer_email\": \"juanperez@entidad.com.py\",\"payer_name\" : \"Juan\",\"payer_lastname\": \"Perez\"},\"entity_data\" : {\"entity_transaction_id\": \"1020\",\"entity_description\" : \"Banco Continental\"},\"card_data\": {\"card_number\" : \"542434******1020\"} }");
+//            if ("00".equals(jsonObject.getString("response_code")) && "APPROVED".equalsIgnoreCase(jsonObject.getString("transaction_status"))) {
+//                imagen.setVisibility(View.VISIBLE);
+//                labelResultado.setVisibility(View.VISIBLE);
+//                jsonObject = null;
+//            }
+//        } catch (JSONException je) {
+//            je.printStackTrace();
+//        }
     }
 
 
