@@ -115,6 +115,30 @@ public class GenerateQRActivity extends AppCompatActivity {
                                             onBackPressed();
                                         }
                                     }
+                                } else if (response.hasField(56)) {
+                                    String [] qrDataValues = response.getString(56).split("\\|");
+                                    qrToken = qrDataValues[1];
+                                    System.out.println("QrData:<" + qrDataValues[2] + ">");
+                                    System.out.println("Token:<" + qrToken + ">");
+                                    bitmap = barcodeEncoder.encodeBitmap(qrDataValues[2], BarcodeFormat.QR_CODE, 750, 750);
+                                    imgQR.setImageBitmap(bitmap);
+                                    ISOMsg getQRStatusRequest = getMessageMock("qr_get_qr_status_iso_message_request.xml");
+                                    getQRStatusRequest.set(56, qrToken);
+                                    start = System.currentTimeMillis();
+                                    ISOMsg getQRStatusResponse = sendMessage(toXML(getQRStatusRequest));
+                                    ISOUtil.sleep(25000);
+                                    if (getQRStatusResponse != null) {
+                                        if ("00".equals(getQRStatusResponse.getString(39))) {
+                                            Toast.makeText(GenerateQRActivity.this, "Transaccion Aprobada", Toast.LENGTH_LONG).show();
+                                            ISOUtil.sleep(3000);
+                                            onBackPressed();
+                                        } else if ("P5".equals(getQRStatusResponse.getString(39))) {
+                                            btnConsultarQR.setEnabled(true);
+                                        } else {
+                                            ISOUtil.sleep(3000);
+                                            onBackPressed();
+                                        }
+                                    }
                                 }
                                 else {
                                     Toast.makeText(GenerateQRActivity.this, "No fue posible generar el QR.", Toast.LENGTH_LONG).show();
