@@ -249,7 +249,7 @@ public class JPOSManager extends QBeanSupport implements Runnable {
             System.out.println("ISOMsg request.pack().toString(): " + request.pack().toString());
             System.out.println("ISOMsg requestToXML: " + xmlRequest);
             String s = command(request.pack().toString(), evt, timeout, xmlRequest);
-            GenericPackager gp = new GenericPackager("jar:assets/verifone.xml");
+            GenericPackager gp = new GenericPackager("jar:assets/packager/verifone.xml");
             ISOPackager ip = (ISOPackager) gp;
             resp = new ISOMsg();
             resp.setPackager(getDefaultPackager());

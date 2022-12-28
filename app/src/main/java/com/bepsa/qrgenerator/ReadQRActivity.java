@@ -132,8 +132,8 @@ public class ReadQRActivity extends AppCompatActivity {
 
     public JSONObject convertEmvCoTlvToJson(Map<String, EmvcoTlvBean> qrMap) throws JSONException {
         JSONObject response = new JSONObject();
-        HashMap<String, String> map = getTlvMaptoJson();
-        HashMap<String, String> subMap = getSubTlvMaptoJson();
+        HashMap<String, String> map = getTlvMapToJson();
+        HashMap<String, String> subMap = getSubTlvMapToJson();
         final Map<String, Map<String, EmvcoTlvBean>> parseSubTlv = EMVCoParser.parseSubTlv(qrMap);
         for (Map.Entry<String, EmvcoTlvBean> tlv : qrMap.entrySet()) {
             if (tagWithSubTags.contains(tlv.getKey())) {
@@ -201,12 +201,12 @@ public class ReadQRActivity extends AppCompatActivity {
         });
     }
 
-    public HashMap<String, String> getTlvMaptoJson() {
+    public static HashMap<String, String> getTlvMapToJson() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("00", "formatIndicator");
+        map.put("00", "formatContentIndicator");
         map.put("01", "poi");
         map.put("02", "merchantData");
-        map.put("52", "mcc");
+        map.put("52", "merchantCategoryCode");
         map.put("53", "currencyCode");
         map.put("54", "amount");
         map.put("58", "countryCode");
@@ -218,12 +218,12 @@ public class ReadQRActivity extends AppCompatActivity {
         return map;
     }
 
-    public HashMap<String, String> getSubTlvMaptoJson() {
+    public static HashMap<String, String> getSubTlvMapToJson() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("00", "globalSingleIndicator");
+        map.put("00", "globalUniqueIdentifier");
         map.put("01", "merchantCode");
-        map.put("03", "branchOffice");
-        map.put("05", "dailyQrCodeId");
+        map.put("03", "branchId");
+        map.put("05", "stan");
         map.put("07", "terminalData");
         return map;
     }
