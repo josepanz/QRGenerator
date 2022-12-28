@@ -1,7 +1,7 @@
 <isomsg direction="outgoing" >
     <header>0000000000</header>
     <field id="0" value="0210"/>
-    <field id="3" value="540061"/>
+    <field id="3" value="012061"/>
     <field id="4" value="000000068000"/>
     <field id="7" value="1106173819"/>
     <field id="11" value="000104"/>

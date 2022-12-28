@@ -14,10 +14,31 @@
         android:maxLength="12"/>
 
     <Button
-        android:id="@+id/btnGenerarQR"
+        android:id="@+id/btnGenerarQR540061"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/generar_qr" />
+        android:text="@string/generar_qr_540061" />
+
+    <Button
+        android:id="@+id/btnGenerarQR550061"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendQuery"
+        android:text="@string/generar_qr_550061" />
+
+    <Button
+        android:id="@+id/btnGenerarQR013061"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendQuery"
+        android:text="@string/generar_qr_013061" />
+
+    <Button
+        android:id="@+id/btnGenerarQR014061"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendQuery"
+        android:text="@string/generar_qr_014061" />
 
     <Button
         android:id="@+id/btnConsultarQR"

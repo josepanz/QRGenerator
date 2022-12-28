@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">QR Reader and Generator</string>
     <string name="generar_qr">Generar QR</string>
+    <string name="generar_qr_540061">Generar QR Compra</string>
+    <string name="generar_qr_550061">Generar QR Adelanto</string>
+    <string name="generar_qr_013061">Generar QR Dinelco Efectivo</string>
+    <string name="generar_qr_014061">Generar QR Adelanto Credito</string>
     <string name="consultar_qr">Consultar QR</string>
     <string name="generar_qr_api">Generar QR por APIs</string>
     <string name="qr_generado">QR Generado</string>

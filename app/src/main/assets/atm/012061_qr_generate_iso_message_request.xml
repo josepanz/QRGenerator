@@ -1,0 +1,22 @@
+<isomsg>
+    <!-- org.jpos.iso.packager.GenericPackager[jar:verifone.xml] -->
+    <header>6000000000</header>
+    <field id="0" value="0200"/>
+    <field id="3" value="012061"/>
+    <field id="4" value="000000068000"/>
+    <field id="7" value="1106173819"/>
+    <field id="11" value="000104"/>
+    <field id="12" value="160019"/>
+    <field id="13" value="1108"/>
+    <field id="22" value="030"/>
+    <field id="25" value="00"/>
+    <field id="41" value="46050312"/>
+    <field id="42" value="000000000100001"/>
+    <field id="44" value="192397303131156410843762"/>
+    <field id="46" value="01VXEVOCV_v02051800000000000000000000000000"/>
+    <isomsg id="48">
+        <!-- org.jpos.iso.packager.GenericSubFieldPackager -->
+        <field id="1" value="01"/>
+    </isomsg>
+    <field id="61" value="0010"/>
+</isomsg>
