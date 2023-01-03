@@ -100,9 +100,11 @@ public class GenerateQRActivity extends AppCompatActivity {
         });
     }
 
-    /** Inicializar objetos del activity */
+    /**
+     * Inicializar objetos del activity
+     */
 
-    private void initializeObjects () {
+    private void initializeObjects() {
         txtDatos = findViewById(R.id.txtDatos);
         btnGenerarQR540061 = findViewById(R.id.btnGenerarQR540061);
         btnGenerarQR550061 = findViewById(R.id.btnGenerarQR550061);
@@ -112,12 +114,13 @@ public class GenerateQRActivity extends AppCompatActivity {
         btnConsultarQR = findViewById(R.id.btnConsultarQR);
     }
 
-    /** Metodo que prepara el mensaje, toma el monto y envia al switch para generación de datos de QR
+    /**
+     * Metodo que prepara el mensaje, toma el monto y envia al switch para generación de datos de QR
      * Luego de un tiempo envia el query para la consulta del estado de la transacción
      * Recibe como parametro el codigo de operacion a enviar para obtener el esquema del mensaje.
      * Devuelve el string del QR
      */
-    private void processSelectedMessage (String strAmount, String pCode, String terminal) {
+    private void processSelectedMessage(String strAmount, String pCode, String terminal) {
         if (!strAmount.trim().isEmpty()) {
             if (strAmount.length() < 13) {
                 try {
@@ -125,7 +128,7 @@ public class GenerateQRActivity extends AppCompatActivity {
                     ISOMsg response = new ISOMsg();
                     // se prepara el mensaje para enviar
                     try {
-                        request = getMessageMock(terminal+"/"+pCode+"_qr_generate_iso_message_request.xml");
+                        request = getMessageMock(terminal + "/" + pCode + "_qr_generate_iso_message_request.xml");
                         BigDecimal inputAmount = new BigDecimal(strAmount);
                         request.set(4, ISOUtil.zeropad(inputAmount.toString(), 12));
                         System.out.println("REQUEST:");
@@ -138,7 +141,7 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                     Bitmap bitmap;
-                    ISOUtil.sleep(50000);
+                    ISOUtil.sleep(5000);
                     if (response != null) {
                         System.out.println("RESPONSE:");
                         System.out.println(toXML(response));
@@ -148,35 +151,35 @@ public class GenerateQRActivity extends AppCompatActivity {
                             qrToken = response.getString(105);
                             bitmap = barcodeEncoder.encodeBitmap(response.getString(106), BarcodeFormat.QR_CODE, 750, 750);
                             imgQR.setImageBitmap(bitmap);
-                            ISOMsg getQRStatusRequest = getMessageMock(terminal+"/000062_qr_get_qr_status_iso_message_request.xml");
+                            ISOMsg getQRStatusRequest = getMessageMock(terminal + "/000062_qr_get_qr_status_iso_message_request.xml");
                             getQRStatusRequest.set(105, qrToken);
                             start = System.currentTimeMillis();
+                            ISOUtil.sleep(10000);
                             ISOMsg getQRStatusResponse = sendMessage(toXML(getQRStatusRequest));
-                            ISOUtil.sleep(25000);
+                            ISOUtil.sleep(5000);
                             if (getQRStatusResponse != null) {
                                 if ("00".equals(getQRStatusResponse.getString(39))) {
                                     Toast.makeText(GenerateQRActivity.this, "Transaccion Aprobada", Toast.LENGTH_LONG).show();
                                     ISOUtil.sleep(3000);
-                                    onBackPressed();
                                 } else if ("P5".equals(getQRStatusResponse.getString(39))) {
                                     btnConsultarQR.setEnabled(true);
                                 } else {
                                     ISOUtil.sleep(3000);
-                                    onBackPressed();
                                 }
                             }
                         } else if (response.hasField(56)) {
-                            String [] qrDataValues = response.getString(56).split("\\|");
+                            String[] qrDataValues = response.getString(56).split("\\|");
                             qrToken = qrDataValues[1];
                             System.out.println("QrData:<" + qrDataValues[2] + ">");
                             System.out.println("Token:<" + qrToken + ">");
                             bitmap = barcodeEncoder.encodeBitmap(qrDataValues[2], BarcodeFormat.QR_CODE, 750, 750);
                             imgQR.setImageBitmap(bitmap);
-                            ISOMsg getQRStatusRequest = getMessageMock(terminal+"/000062_qr_get_qr_status_iso_message_request.xml");
+                            ISOMsg getQRStatusRequest = getMessageMock(terminal + "/000062_qr_get_qr_status_iso_message_request.xml");
                             getQRStatusRequest.set(56, qrToken);
                             start = System.currentTimeMillis();
+                            ISOUtil.sleep(10000);
                             ISOMsg getQRStatusResponse = sendMessage(toXML(getQRStatusRequest));
-                            ISOUtil.sleep(25000);
+                            ISOUtil.sleep(5000);
                             if (getQRStatusResponse != null) {
                                 if ("00".equals(getQRStatusResponse.getString(39))) {
                                     Toast.makeText(GenerateQRActivity.this, "Transaccion Aprobada", Toast.LENGTH_LONG).show();
@@ -184,13 +187,13 @@ public class GenerateQRActivity extends AppCompatActivity {
                                     onBackPressed();
                                 } else if ("P5".equals(getQRStatusResponse.getString(39))) {
                                     btnConsultarQR.setEnabled(true);
+                                    Toast.makeText(GenerateQRActivity.this, "Transaccion Pendiente. Vuelva a Consultar", Toast.LENGTH_LONG).show();
                                 } else {
                                     ISOUtil.sleep(3000);
                                     onBackPressed();
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             Toast.makeText(GenerateQRActivity.this, "No fue posible generar el QR.", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -207,7 +210,8 @@ public class GenerateQRActivity extends AppCompatActivity {
         }
     }
 
-    /** Metodo que crear el mensaje pero en formato ISOMsg segun un packager definido
+    /**
+     * Metodo que crear el mensaje pero en formato ISOMsg segun un packager definido
      * No es utilizado porque genera un error al formatear el mensaje debido al formato ISO establecido
      */
     private ISOMsg getMessage(String filename) throws IOException, ISOException {
@@ -248,17 +252,14 @@ public class GenerateQRActivity extends AppCompatActivity {
             if ("00".equals(getQRStatusResponse.getString(39))) {
                 Toast.makeText(GenerateQRActivity.this, "Transaccion Aprobada", Toast.LENGTH_LONG).show();
                 ISOUtil.sleep(3000);
-                onBackPressed();
             } else if ("P5".equals(getQRStatusResponse.getString(39))) {
                 Toast.makeText(GenerateQRActivity.this, "Transaccion Pendiente. Vuelva a Consultar", Toast.LENGTH_LONG).show();
-                if ((start - System.currentTimeMillis()) > 80000L){
+                if ((start - System.currentTimeMillis()) > 80000L) {
                     Toast.makeText(GenerateQRActivity.this, "Tiempo para Consulta Excedido.", Toast.LENGTH_LONG).show();
                     ISOUtil.sleep(3000);
-                    onBackPressed();
                 }
             } else {
                 ISOUtil.sleep(3000);
-                onBackPressed();
             }
         }
     }
@@ -367,10 +368,11 @@ public class GenerateQRActivity extends AppCompatActivity {
         return isoResponse;
     }
 
-    /** Envia transacciones por socket usando metodo de lectura por jPOSManager
-    * Clase que envia un mensaje en byte [] por medio de un socket, que podria tener
-    * conexion segura SSL por certificado
-    */
+    /**
+     * Envia transacciones por socket usando metodo de lectura por jPOSManager
+     * Clase que envia un mensaje en byte [] por medio de un socket, que podria tener
+     * conexion segura SSL por certificado
+     */
     private ISOMsg sendMessageSim(ISOMsg isoRequest, String xmlRequest) throws ISOException {
         Configuration sc = new SimpleConfiguration();
         sc.put("host:port", "10.220.3.115:11031");
@@ -395,7 +397,7 @@ public class GenerateQRActivity extends AppCompatActivity {
     private void closeKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
-            InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 

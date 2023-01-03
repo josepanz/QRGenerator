@@ -20,9 +20,11 @@ import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Objects;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -38,7 +40,7 @@ import okhttp3.ResponseBody;
  */
 public class GenerateQRApiActivity extends AppCompatActivity {
     final String TAG = "dev";
-    JSONObject jsonResponse ;
+    JSONObject jsonResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
