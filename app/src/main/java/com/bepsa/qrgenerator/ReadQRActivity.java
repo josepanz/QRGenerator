@@ -102,7 +102,7 @@ public class ReadQRActivity extends AppCompatActivity {
 
 
     public JSONObject translateToSsRestRequest(JSONObject req) throws JSONException {
-        String baseData = "{\r\n    \"installment_number\": 1,\r\n    \"payer_data\": {\r\n        \"account_number\": \"1408487066\",\r\n        \"account_type\": \"D\",\r\n        \"payer_cellphone\": \"0971234567\",\r\n        \"payer_email\": \"juanperez@entidad.com.py\",\r\n        \"payer_name\": \"Juan\",\r\n        \"payer_lastname\": \"Perez\"\r\n    },\r\n    \"entity_data\": {\r\n        \"entity_transaction_id\": \"1020\",\r\n        \"entity_description\": \"Banco Continental\"\r\n    },\r\n    \"card_data\": {\r\n        \"card_number\": \"542434******1020\"\r\n    }\r\n}";
+        String baseData = "{\r\n    \"installment_number\": 1,\r\n    \"payer_data\": {\r\n        \"account_number\": \"1406191904\",\r\n        \"account_type\": \"D\",\r\n        \"payer_cellphone\": \"0971234567\",\r\n        \"payer_email\": \"juanperez@entidad.com.py\",\r\n        \"payer_name\": \"Juan\",\r\n        \"payer_lastname\": \"Perez\"\r\n    },\r\n    \"entity_data\": {\r\n        \"entity_transaction_id\": \"1020\",\r\n        \"entity_description\": \"Banco Continental\"\r\n    },\r\n    \"card_data\": {\r\n        \"card_number\": \"4569760000020069\"\r\n    }\r\n}";
         JSONObject ret = new JSONObject(baseData);
         ret.put("transaction_token", req.get("transactionToken"));
         ret.put("amount", new BigDecimal(req.getString("amount")));
@@ -234,7 +234,7 @@ public class ReadQRActivity extends AppCompatActivity {
             "    \"installment_number\": 1,\n" +
             "    \"currency\": 600,\n" +
             "    \"payer_data\": {\n" +
-            "        \"account_number\": \"0123465789\",\n" +
+            "        \"account_number\": \"1406191904\",\n" +
             "        \"account_type\": \"D\",\n" +
             "        \"payer_cellphone\": \"0971234567\",\n" +
             "        \"payer_email\": \"juanperez@entidad.com.py\",\n" +
@@ -246,7 +246,7 @@ public class ReadQRActivity extends AppCompatActivity {
             "        \"entity_description\": \"Banco Continental\"\n" +
             "    },\n" +
             "    \"card_data\": {\n" +
-            "        \"card_number\": \"542434******1020\"\n" +
+            "        \"card_number\": \"4569760000020069\"\n" +
             "    }\n" +
             "}";
 }

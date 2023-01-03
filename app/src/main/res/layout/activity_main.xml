@@ -30,4 +30,12 @@
         android:text="@string/generar_qr_api"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/btnConsultarQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToGetQRStatus"
+        android:text="@string/get_qr_status"
+        tools:ignore="HardcodedText" />
+
 </LinearLayout>

@@ -5,25 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GenerateQRApiActivity">
+    tools:context=".GetQRStatusActivity">
 
     <EditText
-        android:id="@+id/txtDatos"
+        android:id="@+id/token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="12"
-        android:hint="Monto en Gs"/>
+        android:maxLength="16"
+        android:hint="Token del QR"/>
 
     <Button
-        android:id="@+id/btnGenerarQR"
+        android:id="@+id/btnConsultarQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/generar_qr_api" />
-
-    <ImageView
-        android:id="@+id/qrCode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/qr_generado" />
+        android:text="@string/get_qr_status" />
 
 </LinearLayout>

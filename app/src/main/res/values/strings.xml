@@ -8,6 +8,7 @@
     <string name="consultar_qr">Consultar QR</string>
     <string name="generar_qr_api">Generar QR por APIs</string>
     <string name="qr_generado">QR Generado</string>
+    <string name="get_qr_status">Consultar QR por Token</string>
     <string name="leer_qr">Leer QR</string>
     <string name="transaccion_aprobada">!Transacción Aprobada!</string>
 </resources>
