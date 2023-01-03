@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 1,
       "versionName": "1.0",
-      "outputFile": "app-debug.apk"
+      "outputFile": "qr-reader-and-generator-debug.apk"
     }
   ],
   "elementType": "File"
