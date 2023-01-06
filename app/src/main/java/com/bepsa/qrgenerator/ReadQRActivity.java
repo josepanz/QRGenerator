@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +44,8 @@ public class ReadQRActivity extends AppCompatActivity {
     final String TAG = "dev";
     ImageView imagen;
     TextView labelResultado;
+    Button btn_scan;
+
     private List<String> tagWithSubTags = new ArrayList<>();
     JSONObject jsonObject;
 
@@ -53,10 +56,30 @@ public class ReadQRActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_qr);
         imagen = findViewById(R.id.imagen);
         labelResultado = findViewById(R.id.txtResultado);
+        btn_scan = findViewById(R.id.btn_scan);
         tagWithSubTags.add("02");
         tagWithSubTags.add("62");
-        new IntentIntegrator(this).initiateScan(); // abre el escaner
+
+        btn_scan.setOnClickListener(v->
+        {
+            scanCode();
+        });
+
     }
+
+    private void scanCode()
+    {
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        integrator.setPrompt("Scannear el codigo QR");
+        integrator.setCameraId(0);  // Use a specific camera of the device
+        integrator.setOrientationLocked(false);
+        integrator.setBeepEnabled(false);
+        integrator.setBarcodeImageEnabled(false);
+        integrator.setCaptureActivity(CaptureActivityPortrait.class);
+        integrator.initiateScan(); // abre el escaner
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -78,6 +101,12 @@ public class ReadQRActivity extends AppCompatActivity {
                 ISOUtil.sleep(10000);
                 if ("00".equals(jsonObject.getString("response_code")) && "APPROVED".equalsIgnoreCase(jsonObject.getString("transaction_status"))) {
                     imagen.setVisibility(View.VISIBLE);
+                    labelResultado.setVisibility(View.VISIBLE);
+                    jsonObject = null;
+                } else {
+                    imagen.setImageResource(R.drawable.payment_failed);
+                    imagen.setVisibility(View.VISIBLE);
+                    labelResultado.setText("Transacción Rechazada :(");
                     labelResultado.setVisibility(View.VISIBLE);
                     jsonObject = null;
                 }

@@ -11,4 +11,5 @@
     <string name="get_qr_status">Consultar QR por Token</string>
     <string name="leer_qr">Leer QR</string>
     <string name="transaccion_aprobada">!Transacción Aprobada!</string>
+    <string name="escanear_qr">Escanear QR</string>
 </resources>
