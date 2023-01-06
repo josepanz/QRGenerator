@@ -47,6 +47,7 @@ import com.jpos.simulator.JPOSManager;
 
 public class GenerateQRActivity extends AppCompatActivity {
     private String qrToken = "";
+    private BigDecimal inputAmount;
     private long start;
     EditText txtDatos;
     Button btnGenerarQR540061;
@@ -129,7 +130,7 @@ public class GenerateQRActivity extends AppCompatActivity {
                     // se prepara el mensaje para enviar
                     try {
                         request = getMessageMock(terminal + "/" + pCode + "_qr_generate_iso_message_request.xml");
-                        BigDecimal inputAmount = new BigDecimal(strAmount);
+                        inputAmount = new BigDecimal(strAmount);
                         request.set(4, ISOUtil.zeropad(inputAmount.toString(), 12));
                         System.out.println("REQUEST:");
                         System.out.println(toXML(request));
@@ -249,6 +250,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         ISOMsg getQRStatusResponse = new ISOMsg();
         ISOMsg getQRStatusRequest = new ISOMsg();
         getQRStatusRequest = getMessageMock("pos/000062_qr_get_qr_status_iso_message_request.xml");
+        getQRStatusRequest.set(4, ISOUtil.zeropad(inputAmount.toString(), 12));
         getQRStatusRequest.set(56, qrToken);
         System.out.println("REQUEST:");
         System.out.println(toXML(getQRStatusRequest));

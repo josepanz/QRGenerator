@@ -11,9 +11,24 @@
         android:id="@+id/token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="16"
+        android:layout_marginTop="16dp"
         android:hint="Token del QR"
-        tools:ignore="MissingConstraints" />
+        android:maxLength="16"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Monto en Gs"
+        android:maxLength="16"
+        app:layout_constraintBottom_toTopOf="@+id/btnConsultarQR"
+        app:layout_constraintTop_toBottomOf="@+id/token"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnConsultarQR"
@@ -22,7 +37,7 @@
         android:text="@string/get_qr_status"
         app:layout_constraintBottom_toTopOf="@+id/imagen"
         app:layout_constraintTop_toBottomOf="@+id/token"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.354"
         tools:layout_editor_absoluteX="-16dp" />
 
     <pl.droidsonroids.gif.GifImageView

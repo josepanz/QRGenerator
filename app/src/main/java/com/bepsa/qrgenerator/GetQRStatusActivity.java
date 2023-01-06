@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
@@ -36,9 +37,11 @@ import java.nio.charset.StandardCharsets;
  */
 public class GetQRStatusActivity extends AppCompatActivity {
     EditText token;
+    EditText amount;
     Button btnConsultarQR;
     ImageView imagen;
     TextView labelResultado;
+    BigDecimal inputAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,14 @@ public class GetQRStatusActivity extends AppCompatActivity {
         btnConsultarQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String strAmount = token.getText().toString();
-                processSelectedMessage(strAmount, "pos");
+                String strToken = token.getText().toString();
+                String strAmount = amount.getText().toString();
+                inputAmount = new BigDecimal(strAmount);
+                if (strToken.length() == 16) {
+                    if (strAmount.length()  <= 13) {
+                        processSelectedMessage(strToken, "pos");
+                    }
+                }
             }
         });
     }
@@ -66,6 +75,7 @@ public class GetQRStatusActivity extends AppCompatActivity {
 
     private void initializeObjects() {
         token = findViewById(R.id.token);
+        amount = findViewById(R.id.amount);
         btnConsultarQR = findViewById(R.id.btnConsultarQR);
         imagen = findViewById(R.id.imagen);
         labelResultado = findViewById(R.id.txtResultado);
@@ -85,6 +95,7 @@ public class GetQRStatusActivity extends AppCompatActivity {
                     // se prepara el mensaje para enviar
                     try {
                         request = getMessageMock(terminal + "/000062_qr_get_qr_status_iso_message_request.xml");
+                        request.set(4, ISOUtil.zeropad(inputAmount.toString(), 12));
                         request.set(56, str);
                         System.out.println("REQUEST:");
                         System.out.println(toXML(request));
@@ -139,7 +150,7 @@ public class GetQRStatusActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Toast.makeText(GetQRStatusActivity.this, "El monto debe ser menor a 13 Digitos", Toast.LENGTH_LONG).show();
+                Toast.makeText(GetQRStatusActivity.this, "El monto debe ser menor a 16 Digitos", Toast.LENGTH_LONG).show();
             }
         } else {
             Toast.makeText(GetQRStatusActivity.this, "Debe setear un monto", Toast.LENGTH_LONG).show();
