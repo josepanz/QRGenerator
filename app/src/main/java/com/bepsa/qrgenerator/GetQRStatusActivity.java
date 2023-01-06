@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,8 @@ import java.nio.charset.StandardCharsets;
 public class GetQRStatusActivity extends AppCompatActivity {
     EditText token;
     Button btnConsultarQR;
+    ImageView imagen;
+    TextView labelResultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class GetQRStatusActivity extends AppCompatActivity {
     private void initializeObjects() {
         token = findViewById(R.id.token);
         btnConsultarQR = findViewById(R.id.btnConsultarQR);
+        imagen = findViewById(R.id.imagen);
+        labelResultado = findViewById(R.id.txtResultado);
     }
 
     /**
@@ -107,10 +113,22 @@ public class GetQRStatusActivity extends AppCompatActivity {
                             String rc = response.getString(39);
                             System.out.println("Token:<" + qrToken + ">");
                             if ("00".equals(rc)) {
+                                imagen.setImageResource(R.drawable.smartparcel_check);
+                                imagen.setVisibility(View.VISIBLE);
+                                labelResultado.setText("¡Transacción Aprobada!");
+                                labelResultado.setVisibility(View.VISIBLE);
                                 Toast.makeText(GetQRStatusActivity.this, "Transaccion Aprobada " + rc, Toast.LENGTH_LONG).show();
                             } else if ("P5".equals(rc)) {
+                                imagen.setImageResource(R.drawable.transaction_pending);
+                                imagen.setVisibility(View.VISIBLE);
+                                labelResultado.setText("Transacción Pendiente de Aprobacion");
+                                labelResultado.setVisibility(View.VISIBLE);
                                 Toast.makeText(GetQRStatusActivity.this, "Transaccion Pendiente de Aprobacion " + rc, Toast.LENGTH_LONG).show();
                             } else {
+                                imagen.setImageResource(R.drawable.payment_failed);
+                                imagen.setVisibility(View.VISIBLE);
+                                labelResultado.setText("Transacción Rechazada :(");
+                                labelResultado.setVisibility(View.VISIBLE);
                                 Toast.makeText(GetQRStatusActivity.this, "Transaccion Rechazada " + rc, Toast.LENGTH_LONG).show();
                             }
                         }

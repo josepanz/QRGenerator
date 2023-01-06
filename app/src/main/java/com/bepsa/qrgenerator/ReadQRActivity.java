@@ -100,6 +100,8 @@ public class ReadQRActivity extends AppCompatActivity {
                 postTypeAsyncApi(request);
                 ISOUtil.sleep(10000);
                 if ("00".equals(jsonObject.getString("response_code")) && "APPROVED".equalsIgnoreCase(jsonObject.getString("transaction_status"))) {
+                    imagen.setImageResource(R.drawable.smartparcel_check);
+                    labelResultado.setText("¡Transacción Aprobada!");
                     imagen.setVisibility(View.VISIBLE);
                     labelResultado.setVisibility(View.VISIBLE);
                     jsonObject = null;

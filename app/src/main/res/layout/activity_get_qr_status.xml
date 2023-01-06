@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,12 +12,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="16"
-        android:hint="Token del QR"/>
+        android:hint="Token del QR"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnConsultarQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/get_qr_status" />
+        android:text="@string/get_qr_status"
+        app:layout_constraintBottom_toTopOf="@+id/imagen"
+        app:layout_constraintTop_toBottomOf="@+id/token"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-16dp" />
 
-</LinearLayout>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/smartparcel_check"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txtResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:text="@string/transaccion_aprobada"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen"
+        app:layout_constraintVertical_bias="0.452"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
