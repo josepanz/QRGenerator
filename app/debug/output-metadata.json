@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.bepsa.qrgenerator",
+  "applicationId": "com.demo.qrgenerator",
   "variantName": "debug",
   "elements": [
     {

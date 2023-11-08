@@ -1,4 +1,4 @@
-package com.bepsa.qrgenerator;
+package com.demo.qrgenerator;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
 

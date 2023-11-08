@@ -1,4 +1,4 @@
-package com.bepsa.qrgenerator;
+package com.demo.qrgenerator;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -93,7 +93,7 @@ public class ReadQRActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         String datos = result.getContents();
-        String dataDefault = "00020101021202270012py.com.bepsa01070100001520470115303600541300000000015005802PY5921COMERCIO PRUEBA BEPSA6008ASUNCI�N61162022314500000031624503020105060001040725                         63102074716646";
+        String dataDefault = "00020101021202270012py.com.test101070100001520470115303600541300000000015005802PY5921COMERCIO PRUEBA TEST16008ASUNCION61162022314500000031624503020105060001040725                         63102074716646";
         if (!Objects.isNull(datos) && !datos.trim().isEmpty()) {
             try {
                 JSONObject request = translateToSsRestRequest(decodeQRData(datos));
@@ -120,7 +120,7 @@ public class ReadQRActivity extends AppCompatActivity {
 //            JSONObject request = translateToSsRestRequest(decodeQRData(dataDefault));
 //            postTypeAsyncApi(request);
 //            ISOUtil.sleep(10000);
-//            jsonObject = new JSONObject("{\"status\": \"success\",\"response_status_code\": 200,\"response_code\": \"00\",\"transaction_status\": \"APPROVED\",\"ticket_number\": \"0000000001\",\"retrieval_reference_number\": \"031100075402\",\"transaction_token\" : \"2022312300000009\",\"amount\": 10000,\"installment_number\": 1,\"currency\": 600,\"payer_data\": {\"account_number\": \"0123465789\",\"account_type\" : \"D\",\"document_number\" : \"0123456\",\"payer_cellphone\" : \"0971234567\",\"payer_email\": \"juanperez@entidad.com.py\",\"payer_name\" : \"Juan\",\"payer_lastname\": \"Perez\"},\"entity_data\" : {\"entity_transaction_id\": \"1020\",\"entity_description\" : \"Banco Continental\"},\"card_data\": {\"card_number\" : \"542434******1020\"} }");
+//            jsonObject = new JSONObject("{\"status\": \"success\",\"response_status_code\": 200,\"response_code\": \"00\",\"transaction_status\": \"APPROVED\",\"ticket_number\": \"0000000001\",\"retrieval_reference_number\": \"031100075402\",\"transaction_token\" : \"2022312300000009\",\"amount\": 10000,\"installment_number\": 1,\"currency\": 600,\"payer_data\": {\"account_number\": \"0123465789\",\"account_type\" : \"D\",\"document_number\" : \"0123456\",\"payer_cellphone\" : \"0971234567\",\"payer_email\": \"juanperez@entidad.com.py\",\"payer_name\" : \"Juan\",\"payer_lastname\": \"Perez\"},\"entity_data\" : {\"entity_transaction_id\": \"9999\",\"entity_description\" : \"Banco            \"},\"card_data\": {\"card_number\" : \"123456******9999\"} }");
 //            if ("00".equals(jsonObject.getString("response_code")) && "APPROVED".equalsIgnoreCase(jsonObject.getString("transaction_status"))) {
 //                imagen.setVisibility(View.VISIBLE);
 //                labelResultado.setVisibility(View.VISIBLE);
@@ -133,7 +133,7 @@ public class ReadQRActivity extends AppCompatActivity {
 
 
     public JSONObject translateToSsRestRequest(JSONObject req) throws JSONException {
-        String baseData = "{\r\n    \"installment_number\": 1,\r\n    \"payer_data\": {\r\n        \"account_number\": \"1406191904\",\r\n        \"account_type\": \"D\",\r\n        \"payer_cellphone\": \"0971234567\",\r\n        \"payer_email\": \"juanperez@entidad.com.py\",\r\n        \"payer_name\": \"Juan\",\r\n        \"payer_lastname\": \"Perez\"\r\n    },\r\n    \"entity_data\": {\r\n        \"entity_transaction_id\": \"1020\",\r\n        \"entity_description\": \"Banco Continental\"\r\n    },\r\n    \"card_data\": {\r\n        \"card_number\": \"4569760000020069\"\r\n    }\r\n}";
+        String baseData = "{\r\n    \"installment_number\": 1,\r\n    \"payer_data\": {\r\n        \"account_number\": \"1406191904\",\r\n        \"account_type\": \"D\",\r\n        \"payer_cellphone\": \"0971234567\",\r\n        \"payer_email\": \"juanperez@entidad.com.py\",\r\n        \"payer_name\": \"Juan\",\r\n        \"payer_lastname\": \"Perez\"\r\n    },\r\n    \"entity_data\": {\r\n        \"entity_transaction_id\": \"9999\",\r\n        \"entity_description\": \"Banco            \"\r\n    },\r\n    \"card_data\": {\r\n        \"card_number\": \"1234560000009999\"\r\n    }\r\n}";
         JSONObject ret = new JSONObject(baseData);
         ret.put("transaction_token", req.get("transactionToken"));
         ret.put("amount", new BigDecimal(req.getString("amount")));
@@ -187,8 +187,7 @@ public class ReadQRActivity extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, jsonRequest.toString());
         Request request = new Request.Builder()
-//                .url("http://192.170.195.51:11025/QRPayments/pay")
-                .url("http://10.220.3.115:11025/QRPayments/pay")
+                .url("http://ip:puerto/ruta/path")
                 .post(body)
                 .addHeader("api-key", "123456")
                 .addHeader("Content-Type", "application/json")
@@ -206,7 +205,7 @@ public class ReadQRActivity extends AppCompatActivity {
                     String strResponse = responseBody.string();
                     try {
                         jsonObject = new JSONObject(strResponse);
-                        System.out.println("SS_REST_RESPONSE:");
+                        System.out.println("RESPONSE:");
                         System.out.println(jsonObject.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -219,7 +218,7 @@ public class ReadQRActivity extends AppCompatActivity {
                         String strResponse = responseBody.string();
                         try {
                             jsonObject = new JSONObject(strResponse);
-                            System.out.println("SS_REST_RESPONSE:");
+                            System.out.println("RESPONSE:");
                             System.out.println(jsonObject.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -273,11 +272,11 @@ public class ReadQRActivity extends AppCompatActivity {
             "        \"payer_lastname\": \"Perez\"\n" +
             "    },\n" +
             "    \"entity_data\": {\n" +
-            "        \"entity_transaction_id\": \"1020\",\n" +
-            "        \"entity_description\": \"Banco Continental\"\n" +
+            "        \"entity_transaction_id\": \"9999\",\n" +
+            "        \"entity_description\": \"Banco            \"\n" +
             "    },\n" +
             "    \"card_data\": {\n" +
-            "        \"card_number\": \"4569760000020069\"\n" +
+            "        \"card_number\": \"1234560000009999\"\n" +
             "    }\n" +
             "}";
 }

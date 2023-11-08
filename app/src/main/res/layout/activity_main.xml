@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:onClick="goToGenerateQR"
         android:text="@string/generar_qr"
+        android:enabled="false"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:onClick="goToGenerateQRForApi"
         android:text="@string/generar_qr_api"
+        android:enabled="false"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -36,6 +38,7 @@
         android:layout_height="wrap_content"
         android:onClick="goToGetQRStatus"
         android:text="@string/get_qr_status"
+        android:enabled="false"
         tools:ignore="HardcodedText" />
 
 </LinearLayout>

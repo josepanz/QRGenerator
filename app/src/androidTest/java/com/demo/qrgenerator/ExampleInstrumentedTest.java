@@ -1,4 +1,4 @@
-package com.bepsa.qrgenerator;
+package com.demo.qrgenerator;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.bepsa.qrgenerator", appContext.getPackageName());
+        assertEquals("com.demo.qrgenerator", appContext.getPackageName());
     }
 }

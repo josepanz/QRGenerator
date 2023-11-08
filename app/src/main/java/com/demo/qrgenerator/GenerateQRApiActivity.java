@@ -1,4 +1,4 @@
-package com.bepsa.qrgenerator;
+package com.demo.qrgenerator;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -89,7 +89,7 @@ public class GenerateQRApiActivity extends AppCompatActivity {
     public void postTypeAsyncApi(String amount) throws JSONException {
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("poi", "12");
-        jsonRequest.put("merchantData", "py.com.bepsa11223344");
+        jsonRequest.put("merchantData", "py.com.test111223344");
         jsonRequest.put("mcc", "5411");
         jsonRequest.put("amount", amount);
         jsonRequest.put("countryCode", "PY");
@@ -110,7 +110,7 @@ public class GenerateQRApiActivity extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, jsonRequest.toString());
         Request request = new Request.Builder()
-                .url("http://10.220.3.115:31050/api/cnp/qr/generate")
+                .url("http://host:puerto/api/path/qr/generate")
                 .post(body)
                 .addHeader("api-key", "123456")
                 .addHeader("Content-Type", "application/json")

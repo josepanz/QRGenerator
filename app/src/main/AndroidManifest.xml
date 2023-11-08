@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.demo.qrgenerator.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".GenerateQRActivity"
+            android:name="com.demo.qrgenerator.GenerateQRActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -50,7 +50,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ReadQRActivity"
+            android:name="com.demo.qrgenerator.ReadQRActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -63,7 +63,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".GenerateQRApiActivity"
+            android:name="com.demo.qrgenerator.GenerateQRApiActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -76,7 +76,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".GetQRStatusActivity"
+            android:name="com.demo.qrgenerator.GetQRStatusActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -89,7 +89,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CaptureActivityPortrait"
+            android:name="com.demo.qrgenerator.CaptureActivityPortrait"
             android:exported="true"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
