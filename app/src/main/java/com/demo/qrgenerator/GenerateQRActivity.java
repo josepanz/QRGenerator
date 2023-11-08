@@ -1,4 +1,4 @@
-package com.bepsa.qrgenerator;
+package com.demo.qrgenerator;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -340,7 +340,7 @@ public class GenerateQRActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Socket s = new Socket("10.220.3.115", 11041);
+                    Socket s = new Socket("ip", 9999);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(xml);
@@ -388,7 +388,7 @@ public class GenerateQRActivity extends AppCompatActivity {
      */
     private ISOMsg sendMessageSim(ISOMsg isoRequest, String xmlRequest) throws ISOException {
         Configuration sc = new SimpleConfiguration();
-        sc.put("host:port", "10.220.3.115:11031");
+        sc.put("host:port", "ip:puerto");
         sc.put("trace", "true");
 
         JPOSManager jm = new JPOSManager();
